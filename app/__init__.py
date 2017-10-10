@@ -14,8 +14,13 @@ def create_app(config_name):
     db.init_app(app)
 
     # Register Blueprint
+    # main blueprint : api and db operation
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
+
+    # spider blueprint : spider script for wanted blog
+    from .spider import spider as spider_blueprint
+    app.register_blueprint(spider_blueprint)
 
     with app.app_context():
         db.create_all()
