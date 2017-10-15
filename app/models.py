@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from app import db
 
+
 class Article(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     author = db.Column(db.String(128), index = True)
@@ -10,7 +11,7 @@ class Article(db.Model):
     link = db.Column(db.String(256), index = True, unique = True)
     pub_date = db.Column(db.DateTime)
 
-    def __init__(self, title = '',pub_date = None, author = '', link = ''):
+    def __init__(self, title='', pub_date=None, author='', link=''):
         self.title = title
         self.author = author
         if pub_date is None:
@@ -22,7 +23,7 @@ class Article(db.Model):
     def __repr__(self):
         return '<Article %r>' % self.title
 
-    def toDict(self):
+    def to_dict(self):
         return {
             'title': self.title,
             'url': self.title,
