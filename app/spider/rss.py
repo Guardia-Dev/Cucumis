@@ -12,7 +12,6 @@ feed_url_list = {
     '阿里中间件团队博客': 'http://jm.taobao.org/atom.xml',
 }
 
-
 def get_all_urls():
     res = []
     for title, url in feed_url_list.items():
@@ -34,7 +33,8 @@ def parser_2_post(list):
 
         # 使用 feedparser 工具来爬取文章信息
         list_xml = feedparser.parse(url)
-        res_dict.append(re_serialize(url, list_xml))
+        for item in re_serialize(url, list_xml):
+            res_dict.append(item)
 
     return res_dict
 
@@ -68,6 +68,11 @@ def re_serialize(url, rss_json):
         res_dict.append(item)
 
     return res_dict
+
+
+# api
+def get_post_list():
+    return parser_2_post(get_all_urls())
 
 # 脚本测试入口
 # if __name__ == '__main__':
