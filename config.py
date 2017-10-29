@@ -1,4 +1,5 @@
 import os
+import base64
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -13,7 +14,7 @@ class config:
 class DevelopmentConfig(config):
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
-    'sqlite:///' + os.path.join(basedir, 'data.db')
+        'postgresql://postgres:dhy94113@localhost:5432/postgres'
 
 class TestingConfig(config):
     TESTING = True
@@ -28,5 +29,6 @@ config = {
     'development': DevelopmentConfig,
     'testing': TestingConfig,
     'production': ProductionConfig,
+
     'default': DevelopmentConfig
 }

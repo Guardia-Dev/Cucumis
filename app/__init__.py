@@ -12,6 +12,7 @@ def create_app(config_name):
     app.config.from_object(config[config_name])
     config[config_name].init_app(app)
     db.init_app(app)
+    db.app = app
 
     # Register Blueprint
     # main blueprint : api and db operation

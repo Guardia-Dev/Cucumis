@@ -5,6 +5,8 @@ from app import db
 
 
 class Article(db.Model):
+    __tablename__ = 'articles'
+
     id = db.Column(db.Integer, primary_key = True)
     author = db.Column(db.String(128), index = True)
     title = db.Column(db.String(64), index = True)
