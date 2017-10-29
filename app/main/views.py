@@ -1,12 +1,12 @@
 from . import main
 from flask import render_template
 
-import app.spider.rss as rss_tools
+from app.spider.dbhelper import cache_query as query
 
 @main.route('/')
 def hello():
     # posts = []
-    posts = rss_tools.get_post_list()
+    posts = query()
     return render_template('rss.html', posts = posts)
 
 
