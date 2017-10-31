@@ -48,6 +48,14 @@ def cache_update():
 
     db.session.commit()
 
+    print('Update Complete!!!')
+
+
+# API - Context
+def cache_update_with_context():
+    with db.app.app_context():
+        cache_update()
+
 
 # API
 def cache_query():
