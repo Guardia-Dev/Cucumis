@@ -10,6 +10,9 @@ feed_url_list = {
     'mikeash': 'https://www.mikeash.com/pyblog/rss.py?mode=fulltext',
     '阿里中间件团队博客': 'http://jm.taobao.org/atom.xml',
     '陈鹏个人博客':'http://chenpeng.info/feed',
+    'Amywushu': 'https://amywushu.github.io/atom.xml',
+    'AloneMonkey 庆哥': 'http://www.alonemonkey.com/atom.xml',
+
 }
 
 rss_datetime_format_str = "%a, %d %b %Y %H:%M:%S %z"
