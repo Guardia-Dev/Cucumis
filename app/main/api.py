@@ -6,19 +6,20 @@ from . import main
 from app.spider.dbhelper import cache_query as query
 from app.spider.dbhelper import cache_update as update
 
-# jsonp support
 
-
-def support_jsonp(f):
-    @wraps(f)
-    def dec_func(*args, **kwargs):
+def jsonp(func):
+    """Wraps JSONified output for JSONP requests."""
+    @wraps(func)
+    def decorated_function(*args, **kwargs):
         callback = request.args.get('callback', False)
         if callback:
-            content = str(callback) + '(' + f(*args, **kwargs).data.decode('utf-8') + ')'
-            return current_app.response_class(content, mimetype='application/json')
+            data = str(func(*args, **kwargs).data)
+            content = str(callback) + '(' + data + ')'
+            mimetype = 'application/javascript'
+            return current_app.response_class(content, mimetype=mimetype)
         else:
-            return f(*args, **kwargs)
-    return dec_func
+            return func(*args, **kwargs)
+    return decorated_function
 
 
 @main.route('/api/v1/test')
