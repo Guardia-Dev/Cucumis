@@ -33,7 +33,7 @@ def api_rss_list():
 
 
 @main.route('/api/v1/rss_update', methods=['GET'])
-@support_jsonp
+@jsonp
 def api_rss_list_update():
     update()
     return jsonify({
